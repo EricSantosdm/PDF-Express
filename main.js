@@ -86,6 +86,7 @@ const createRow = (client, index) => {
         <td>${client.celular}</td>
         <td>${client.local}</td>
         <td>${client.cidade}</td>
+        <td><a href="https://www.google.com.br/maps/place/+${client.destino}"target="_blank"><img src="img/rota.png" height="10px"> Rota</a></td>
         <td>
             <button type="button" class="button green" id="edit-${index}">Editar</button>
             <button type="button" class="button red" id="delete-${index}" >Excluir</button>
