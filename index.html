@@ -6,13 +6,12 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css2?family=Karla:ital,wght@0,400;0,700;1,200;1,800&display=swap"
-        rel="stylesheet">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css2?family=Karla:ital,wght@0,400;0,700;1,200;1,800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/main.css">
     <link rel="stylesheet" href="css/button.css">
     <link rel="stylesheet" href="css/records.css">
     <link rel="stylesheet" href="css/modal.css">
+    
     <script src="main.js" defer></script>
     <!--https://www.google.com.br/maps/place/-->
     <title>Sistema de Gerenciamento de Pacotes</title>
@@ -25,7 +24,7 @@
     </header>
     <main>
         <button type="button" class="button blue mobile" id="cadastrarPacote">Cadastrar Pacote</button>
-        <table id="tableClient" class="records">
+        <table id="tablePack" class="records table">
             <thead>
                 <tr>
                     <th>Código</th>
@@ -35,7 +34,7 @@
                     <th>Celular</th>
                     <th>Endereço Envio</th>
                     
-                    <th>Endereço do Cliente <img src="img/rota.png" height="10px"></th>
+                    <th>Endereço do Cliente </th>
                     <th>Ação</th>
                     
                 </tr>
@@ -52,13 +51,13 @@
                 </header>
                 <form id="form" class="modal-form">
                   
-                    <label for="nome" class="title-form">First name:</label>
-                    <input type="text" id="nome" data-index="new" class="modal-field" value="eric" placeholder="Destinatário"required>
                     
-                    <input type="destino" id="destino" class="modal-field" value="mauriti" placeholder="Endereço Destino" required>
-                    <input type="tel" id="celular" class="modal-field" value="apodi" placeholder="Local Atual" required>
-                    <input type="text" id="local" class="modal-field" value="777" placeholder="Celular do Destinatário" required>
-                    <input type="text" id="cidade" class="modal-field-extend" value="Agencia PDF" placeholder="Endereço Envio" required>
+                    <input type="text" id="nome" data-index="new" class="modal-field"  placeholder="Destinatário"required>
+                    
+                    <input type="destino" id="destino" class="modal-field"  placeholder="Endereço Destino" required>
+                    <input type="tel" id="celular" class="modal-field"  placeholder="Local Atual" required>
+                    <input type="text" id="local" class="modal-field"  placeholder="Celular do Destinatário" required>
+                    <input type="text" id="cidade" class="modal-field-extend"  placeholder="Endereço Envio" required>
                 </form>
                 <footer class="modal-footer">
                     <button id="salvar" class="button green">Salvar</button>

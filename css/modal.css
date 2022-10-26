@@ -70,6 +70,7 @@
     box-shadow: 0 0 2px black;
     padding: 0 10px;
     font-size:1rem;
+    border-radius: 8px;
 }
 .modal-field-extend{
     width: calc(100% - 10px);

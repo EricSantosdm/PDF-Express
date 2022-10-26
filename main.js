@@ -10,27 +10,27 @@ const closeModal = () => {
 
 
 const getLocalStorage = () => JSON.parse(localStorage.getItem('db_client')) ?? []
-const setLocalStorage = (dbClient) => localStorage.setItem("db_client", JSON.stringify(dbClient))
+const setLocalStorage = (dbPack) => localStorage.setItem("db_client", JSON.stringify(dbPack))
 
-// CRUD - create read update delete
-const deleteClient = (index) => {
-    const dbClient = readClient()
-    dbClient.splice(index, 1)
-    setLocalStorage(dbClient)
+// CRUD com Factory
+const deletePack = (index) => {
+    const dbPack = readPack()
+    dbPack.splice(index, 1)
+    setLocalStorage(dbPack)
 }
 
-const updateClient = (index, client) => {
-    const dbClient = readClient()
-    dbClient[index] = client
-    setLocalStorage(dbClient)
+const updatePack = (index, client) => {
+    const dbPack = readPack()
+    dbPack[index] = client
+    setLocalStorage(dbPack)
 }
 
-const readClient = () => getLocalStorage()
+const readPack = () => getLocalStorage()
 
-const createClient = (client) => {
-    const dbClient = getLocalStorage()
-    dbClient.push (client)
-    setLocalStorage(dbClient)
+const createPack = (client) => {
+    const dbPack = getLocalStorage()
+    dbPack.push (client)
+    setLocalStorage(dbPack)
 }
 
 const isValidFields = () => {
@@ -52,8 +52,8 @@ function getRandomInt(min, max) {
     return Math.floor(Math.random() * (max - min) + min);
   }
 
-  
-const saveClient = () => {
+ //Fachada UML 
+const savePack = () => {
     debugger
     if (isValidFields()) {
         const client = {
@@ -66,17 +66,18 @@ const saveClient = () => {
         }
         const index = document.getElementById('nome').dataset.index
         if (index == 'new') {
-            createClient(client)
+            createPack(client)
             updateTable()
             closeModal()
         } else {
-            updateClient(index, client)
+            updatePack(index, client)
             updateTable()
             closeModal()
         }
     }
 }
 
+//
 const createRow = (client, index) => {
     const newRow = document.createElement('tr')
     newRow.innerHTML = `
@@ -86,24 +87,24 @@ const createRow = (client, index) => {
         <td>${client.celular}</td>
         <td>${client.local}</td>
         <td>${client.cidade}</td>
-        <td><a href="https://www.google.com.br/maps/place/+${client.destino}"target="_blank"><img src="img/rota.png" height="10px"> Rota</a></td>
+        <td><a href="https://www.google.com.br/maps/place/+${client.destino}"target="_blank"> Rota</a></td>
         <td>
             <button type="button" class="button green" id="edit-${index}">Editar</button>
             <button type="button" class="button red" id="delete-${index}" >Excluir</button>
         </td>
     `
-    document.querySelector('#tableClient>tbody').appendChild(newRow)
+    document.querySelector('#tablePack>tbody').appendChild(newRow)
 }
 
 const clearTable = () => {
-    const rows = document.querySelectorAll('#tableClient>tbody tr')
+    const rows = document.querySelectorAll('#tablePack>tbody tr')
     rows.forEach(row => row.parentNode.removeChild(row))
 }
 
 const updateTable = () => {
-    const dbClient = readClient()
+    const dbPack = readPack()
     clearTable()
-    dbClient.forEach(createRow)
+    dbPack.forEach(createRow)
 }
 
 const fillFields = (client) => {
@@ -114,8 +115,8 @@ const fillFields = (client) => {
     document.getElementById('nome').dataset.index = client.index
 }
 
-const editClient = (index) => {
-    const client = readClient()[index]
+const editPack = (index) => {
+    const client = readPack()[index]
     client.index = index
     fillFields(client)
     openModal()
@@ -127,12 +128,12 @@ const editDelete = (event) => {
         const [action, index] = event.target.id.split('-')
 
         if (action == 'edit') {
-            editClient(index)
+            editPack(index)
         } else {
-            const client = readClient()[index]
+            const client = readPack()[index]
             const response = confirm(`Deseja realmente excluir o cliente ${client.nome}`)
             if (response) {
-                deleteClient(index)
+                deletePack(index)
                 updateTable()
             }
         }
@@ -149,9 +150,9 @@ document.getElementById('modalClose')
     .addEventListener('click', closeModal)
 
 document.getElementById('salvar')
-    .addEventListener('click', saveClient)
+    .addEventListener('click', savePack)
 
-document.querySelector('#tableClient>tbody')
+document.querySelector('#tablePack>tbody')
     .addEventListener('click', editDelete)
 
 document.getElementById('cancelar')
